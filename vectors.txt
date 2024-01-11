@@ -1,0 +1,51 @@
+Malware
+
+Viruses: Infect other programs and propagate.
+Worms: Self-replicating programs that spread across networks.
+Trojans: Disguised as legitimate software to deceive users.
+Ransomware: Encrypts data and demands payment for decryption.
+Spyware: Covertly gathers information without consent.
+Adware: Automatically delivers or displays unwanted advertisements.
+Phishing and Social Engineering
+
+Email Phishing: Deceptive emails mimicking legitimate sources to steal information.
+Spear Phishing: Targeted phishing attacks at specific individuals or organizations.
+Vishing (Voice Phishing): Phishing via phone calls.
+Smishing (SMS Phishing): Phishing via text messages.
+Pretexting: Creating a fabricated scenario to steal information.
+Network Attacks
+
+Man-in-the-Middle (MitM) Attacks: Intercepting communication between two parties.
+Denial-of-Service (DoS) and Distributed Denial-of-Service (DDoS) Attacks: Overwhelming a system's resources to make it unavailable.
+Session Hijacking: Exploiting a valid computer session to gain unauthorized access.
+Web Application Attacks
+
+SQL Injection: Inserting malicious SQL queries into input fields to manipulate databases.
+Cross-Site Scripting (XSS): Injecting malicious scripts into web pages viewed by others.
+Cross-Site Request Forgery (CSRF): Tricking a browser into executing unauthorized actions.
+Insider Threats
+
+Malicious Insiders: Employees who intentionally harm the organization.
+Unintentional Insiders: Employees who inadvertently cause security breaches.
+Physical Security Breaches
+
+Unauthorized Access: Gaining physical entry to restricted areas.
+Dumpster Diving: Searching through waste to find sensitive information.
+Tailgating: Following authorized personnel into secure areas.
+Supply Chain Attacks
+
+Software Interception: Compromising software during development or distribution.
+Hardware Tampering: Altering physical components to compromise security.
+Cloud Security Threats
+
+Insecure Interfaces and APIs: Vulnerabilities in service interfaces.
+Data Loss and Leakage: Unintentional exposure or loss of data.
+Account Hijacking: Unauthorized access to cloud service accounts.
+Mobile Security Threats
+
+Insecure Apps: Applications with vulnerabilities or malicious functions.
+Unauthorized Access: Breaching the security of mobile devices.
+IoT (Internet of Things) Vulnerabilities
+
+Insecure Devices: IoT devices lacking robust security measures.
+Network Breaches: Compromising interconnected IoT devices.
