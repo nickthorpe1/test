@@ -1,0 +1,64 @@
+import requests
+import pandas as pd
+import csv
+
+# Your VirusTotal API Key
+API_KEY = 'ENTERAPI' \
+
+# Function to get download URL from VirusTotal for a given SHA256 hash
+def get_download_url(sha256_hash):
+    url = f"https://www.virustotal.com/api/v3/files/{sha256_hash}/download_url"
+    headers = {
+        'x-apikey': API_KEY
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('data')
+    else:
+        print(f"Failed to get download URL for {sha256_hash}: {response.status_code}")
+        return None
+
+# Function to process hashes from a list
+def process_hash_list(hash_list):
+    results = {}
+    for sha256_hash in hash_list:
+        download_url = get_download_url(sha256_hash)
+        results[sha256_hash] = download_url
+    return results
+
+# Function to read hashes from a CSV file
+def read_hashes_from_csv(file_path):
+    df = pd.read_csv(file_path)
+    # Assuming the hashes are in a column named 'hash'
+    return df['hash'].tolist()
+
+# Function to write results to a CSV file
+def write_results_to_csv(results, output_file):
+    with open(output_file, 'w', newline='') as csvfile:
+        fieldnames = ['sha256_hash', 'download_url']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for sha256_hash, download_url in results.items():
+            writer.writerow({'sha256_hash': sha256_hash, 'download_url': download_url})
+
+# Main function
+def main():
+    # Option 1: Manual list of SHA256 hashes
+    hash_list = [
+        "f59035192098e44b86c4648a0de4078edbe80352260276f4755d15d354f5fc58",
+,
+
+        # Add more hashes here
+    ]
+
+    # Option 2: Read SHA256 hashes from a CSV file
+    # hash_list = read_hashes_from_csv('hashes.csv')
+
+    # Get download URLs for the hashes
+    results = process_hash_list(hash_list)
+
+    # Output results to a CSV file
+    write_results_to_csv(results, 'results.csv')
+
+if __name__ == "__main__":
+    main()
