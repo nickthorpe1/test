@@ -1,0 +1,66 @@
+QUESTIONS::
+
+ - Can you describe your experience with threat intelligence platforms (TIPs) and any specific tools you have used?
+ - How do you differentiate between various types of threat intelligence (strategic, operational, tactical, and technical)?
+ - Can you walk us through your process of collecting, analyzing, and disseminating threat intelligence?
+ - Describe a significant cyber threat you identified and mitigated. How did threat intelligence contribute to this process?
+ - How do you prioritize and handle multiple threats or indicators of compromise (IOCs)?
+ - What methods do you use to ensure the accuracy and relevance of your threat intelligence?
+ - How do you keep up-to-date with the constantly evolving threat landscape?
+ - Can you explain a time when you had to communicate complex threat intelligence to non-technical stakeholders?
+ - How do you integrate threat intelligence into the overall cybersecurity strategy of an organization?
+ - What role does collaboration play in your threat intelligence work? Can you give an example of a successful collaborative effort?
+ - How do you handle false positives in threat intelligence?
+ - Describe your experience with automated threat intelligence tools and scripts. How have you utilized them in your previous role?
+ - What metrics do you use to measure the effectiveness of your threat intelligence program?
+ - Can you discuss a time when your threat intelligence led to significant changes in security posture or policy within your organization?
+ - What are some emerging threats you are currently monitoring, and how do you prepare for them?
+
+
+
+
+Can you describe your experience with threat intelligence platforms (TIPs) and any specific tools you have used?
+
+Response: Detailed experience with platforms such as ThreatConnect, Anomali, or MISP. Explanation of how they integrated these tools into their workflow and specific use cases.
+How do you differentiate between various types of threat intelligence (strategic, operational, tactical, and technical)?
+
+Response: Clear differentiation with examples. Strategic: high-level trends; Operational: immediate threats; Tactical: TTPs (tactics, techniques, procedures); Technical: specific indicators (IOCs).
+Can you walk us through your process of collecting, analyzing, and disseminating threat intelligence?
+
+Response: Step-by-step process including sources of data (open source, dark web, internal logs), analytical techniques (correlation, trend analysis), and dissemination methods (reports, alerts, dashboards).
+Describe a significant cyber threat you identified and mitigated. How did threat intelligence contribute to this process?
+
+Response: A detailed case study highlighting identification, analysis, mitigation strategies, and the role of threat intelligence in preempting or responding to the threat.
+How do you prioritize and handle multiple threats or indicators of compromise (IOCs)?
+
+Response: Explanation of prioritization criteria (severity, relevance, potential impact) and methods for handling concurrent threats efficiently.
+What methods do you use to ensure the accuracy and relevance of your threat intelligence?
+
+Response: Verification processes (cross-referencing sources, historical data analysis), relevance checks (contextual relevance to organization), and continuous improvement through feedback loops.
+How do you keep up-to-date with the constantly evolving threat landscape?
+
+Response: Engagement in continuous learning through industry reports, threat intelligence communities, conferences, webinars, and certifications.
+Can you explain a time when you had to communicate complex threat intelligence to non-technical stakeholders?
+
+Response: Example of simplifying technical details into business impact language, use of visual aids, and ensuring actionable recommendations.
+How do you integrate threat intelligence into the overall cybersecurity strategy of an organization?
+
+Response: Integration points (risk assessments, incident response plans, security controls), examples of strategic influence (policy changes, budget allocation), and alignment with organizational goals.
+What role does collaboration play in your threat intelligence work? Can you give an example of a successful collaborative effort?
+
+Response: Importance of internal (other security teams) and external (industry peers, ISACs) collaboration, and a specific instance where collaboration led to significant threat mitigation or insight.
+How do you handle false positives in threat intelligence?
+
+Response: Methods for identifying and reducing false positives (contextual analysis, whitelisting, tuning detection systems), and impact on overall threat landscape perception.
+Describe your experience with automated threat intelligence tools and scripts. How have you utilized them in your previous role?
+
+Response: Specific tools and scripts used (e.g., STIX/TAXII, Python scripts for data parsing), examples of automation improving efficiency, and any custom solutions developed.
+What metrics do you use to measure the effectiveness of your threat intelligence program?
+
+Response: Key metrics (detection rates, response times, false positive rates), how they inform decision-making, and examples of improvements driven by metric analysis.
+Can you discuss a time when your threat intelligence led to significant changes in security posture or policy within your organization?
+
+Response: Specific example, changes implemented, and the resulting impact on security posture or organizational policy.
+What are some emerging threats you are currently monitoring, and how do you prepare for them?
+
+Response: Current threat landscape insights, specific threats (e.g., new malware, APT groups), and preparation strategies (proactive measures, awareness programs).
