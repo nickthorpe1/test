@@ -1,0 +1,61 @@
+# python
+
+import pandas as pd
+import requests
+
+# Define your API key and base URL
+API_KEY = 'your_recorded_future_api_key'
+BASE_URL = 'https://api.recordedfuture.com/v2'
+
+# Function to query Recorded Future API
+def query_recorded_future(ioc):
+    url = f"{BASE_URL}/risklist"
+    headers = {
+        'X-RFToken': API_KEY,
+        'Content-Type': 'application/json'
+    }
+    params = {
+        'entities': ioc,
+        'output_format': 'json'
+    }
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+# Read the input CSV file
+input_csv = 'input_iocs.csv'
+df = pd.read_csv(input_csv)
+
+# Prepare columns to store API results
+df['Risk Score'] = None
+df['Confidence Score'] = None
+df['Other Attribute'] = None
+
+# Process each IOC and query the API
+for index, row in df.iterrows():
+    ioc = row['IOC']  # Assuming 'IOC' is the column name in your CSV file
+    result = query_recorded_future(ioc)
+    if result and 'data' in result:
+        df.at[index, 'Risk Score'] = result['data'].get('risk', {}).get('score', None)
+        df.at[index, 'Confidence Score'] = result['data'].get('risk', {}).get('confidence', None)
+        df.at[index, 'Other Attribute'] = result['data'].get('some_other_attribute', None)
+
+# Write the updated data back to a new CSV file
+output_csv = 'output_iocs_with_scores.csv'
+df.to_csv(output_csv, index=False)
+
+print(f"Updated data has been written to {output_csv}")
+
+
+Explanation:
+Setup: Replace 'your_recorded_future_api_key' with your actual Recorded Future API key.
+Query Function: The query_recorded_future function constructs the API request and handles the response.
+CSV Operations: The script reads the IOCs from the CSV, processes each IOC by querying the API, and updates the DataFrame with the retrieved data.
+Output: The updated DataFrame is saved to a new CSV file.
+Notes:
+Make sure the input CSV file (input_iocs.csv) has a column named IOC which contains the IOCs to be queried.
+Handle API rate limiting and error responses appropriately in a production environment.
+The script assumes that the API response contains fields named risk and confidence. Adjust the field names based on the actual API response structure.
+You might need to handle authentication and API limits as per Recorded Future's guidelines.
