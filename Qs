@@ -64,3 +64,68 @@ Response: Specific example, changes implemented, and the resulting impact on sec
 What are some emerging threats you are currently monitoring, and how do you prepare for them?
 
 Response: Current threat landscape insights, specific threats (e.g., new malware, APT groups), and preparation strategies (proactive measures, awareness programs).
+
+
+
+
+Technical Knowledge and Expertise
+Threat Analysis:
+
+Can you describe the steps you would take to analyze a new piece of malware? What tools would you use?
+Explain how you would conduct a root cause analysis on a security incident.
+Indicators of Compromise (IoCs):
+
+What are Indicators of Compromise (IoCs), and how do you use them in threat detection and response?
+How would you collect and verify the accuracy of IoCs from various sources?
+Attack Techniques:
+
+Explain the MITRE ATT&CK framework and how it can be used in threat intelligence.
+Describe the typical stages of an advanced persistent threat (APT) attack and how you would detect each stage.
+Threat Hunting:
+
+What methodologies do you follow when conducting threat hunting activities?
+How would you set up a proactive threat hunting campaign for a specific threat actor?
+Practical Application and Scenario-Based
+Incident Response:
+
+Imagine you are alerted to a potential breach involving a sophisticated adversary. What steps would you take to investigate and mitigate the threat?
+Provide a detailed incident response plan for a ransomware attack.
+Network and System Security:
+
+How would you identify and analyze anomalous network traffic that may indicate a cyber attack?
+Explain how you would secure a network against lateral movement by an attacker.
+Data Analysis:
+
+Describe your process for analyzing large datasets to identify trends and patterns in cyber threats.
+How would you use machine learning techniques to enhance threat intelligence analysis?
+Tools and Technologies
+Threat Intelligence Platforms (TIPs):
+
+Which Threat Intelligence Platforms have you worked with, and what are their advantages and disadvantages?
+How do you integrate threat intelligence feeds into your existing security infrastructure?
+Reverse Engineering:
+
+Can you walk me through the process of reverse-engineering a piece of malware?
+What tools and techniques do you use for static and dynamic malware analysis?
+Scripting and Automation:
+
+How would you automate the collection and analysis of threat intelligence data?
+Provide an example of a script or tool you have developed to aid in threat intelligence activities.
+Case Studies and Experience
+Previous Experience:
+
+Describe a significant cyber threat you have identified and mitigated in the past. What was your approach and what were the outcomes?
+What is the most challenging threat actor you have encountered, and how did you deal with them?
+Real-World Scenarios:
+
+How would you handle a situation where you receive conflicting threat intelligence reports from different sources?
+Describe a time when you had to convince senior management to take a specific action based on your threat intelligence findings.
+Thought Process and Problem Solving
+Strategic Thinking:
+
+How do you prioritize different types of threats and vulnerabilities in your threat intelligence program?
+What criteria do you use to evaluate the credibility and relevance of threat intelligence sources?
+Ethics and Decision Making:
+
+How do you balance the need for thorough analysis with the urgency of responding to an emerging threat?
+What ethical considerations do you take into account when handling sensitive threat intelligence information?
