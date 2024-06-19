@@ -1,0 +1,45 @@
+Sub SearchGoogle()
+    Dim searchQuery As String
+    Dim chromePath As String
+
+    ' Get the search query from cell A1
+    searchQuery = ThisWorkbook.Sheets("Sheet1").Range("A1").Value
+
+    ' URL encode the search query
+    searchQuery = Application.WorksheetFunction.EncodeURL(searchQuery)
+    
+    ' Path to Chrome executable
+    chromePath = """C:\Program Files\Google\Chrome\Application\chrome.exe"""
+
+    ' Construct the full URL for the Google search
+    Dim searchUrl As String
+    searchUrl = "https://www.google.com/search?q=" & searchQuery
+
+    ' Open the search URL in Chrome
+    Shell (chromePath & " -url " & searchUrl)
+End Sub
+
+
+
+
+
+searchQuery = Replace(searchQuery, " ", "%20")
+searchQuery = Replace(searchQuery, "!", "%21")
+searchQuery = Replace(searchQuery, "#", "%23")
+searchQuery = Replace(searchQuery, "$", "%24")
+searchQuery = Replace(searchQuery, "&", "%26")
+searchQuery = Replace(searchQuery, "'", "%27")
+searchQuery = Replace(searchQuery, "(", "%28")
+searchQuery = Replace(searchQuery, ")", "%29")
+searchQuery = Replace(searchQuery, "*", "%2A")
+searchQuery = Replace(searchQuery, "+", "%2B")
+searchQuery = Replace(searchQuery, ",", "%2C")
+searchQuery = Replace(searchQuery, "/", "%2F")
+searchQuery = Replace(searchQuery, ":", "%3A")
+searchQuery = Replace(searchQuery, ";", "%3B")
+searchQuery = Replace(searchQuery, "=", "%3D")
+searchQuery = Replace(searchQuery, "?", "%3F")
+searchQuery = Replace(searchQuery, "@", "%40")
+searchQuery = Replace(searchQuery, "[", "%5B")
+searchQuery = Replace(searchQuery, "]", "%5D")
+
