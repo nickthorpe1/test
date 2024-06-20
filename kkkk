@@ -1,0 +1,48 @@
+// Combine data from different tables to get a comprehensive view
+let fileEvents = DeviceFileEvents
+| where ActionType in ("QuarantineFile", "BlockFile")
+| project 
+    FileSHA256, 
+    FileName, 
+    FileSize, 
+    ThreatName = MalwareDetectionName, 
+    DeviceId, 
+    Timestamp;
+
+let emailEvents = EmailEvents
+| where ActionType == "Quarantine" 
+| project 
+    FileSHA256, 
+    EmailSender, 
+    EmailRecipient, 
+    ThreatName = ThreatName, 
+    SourceURL = EmailUrl, 
+    ThreatStatusRank, 
+    Timestamp;
+
+let networkEvents = DeviceNetworkEvents
+| where ActionType == "Connection"
+| project 
+    FileSHA256, 
+    SourceIP, 
+    DestinationIP, 
+    DeviceId, 
+    Timestamp;
+
+// Join file events with email events and network events to gather all relevant information
+fileEvents
+| join kind=leftouter (emailEvents) on FileSHA256
+| join kind=leftouter (networkEvents) on FileSHA256
+| project
+    FileSHA256, 
+    FileName, 
+    FileSize, 
+    ThreatName, 
+    EmailSender, 
+    EmailRecipient, 
+    SourceURL, 
+    SourceIP, 
+    DestinationIP, 
+    Timestamp,
+    ThreatStatusRank
+| order by Timestamp desc
