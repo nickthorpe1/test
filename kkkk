@@ -1,40 +1,42 @@
-// Combine data from different tables to get a comprehensive view
-let fileEvents = DeviceFileEvents
-| where ActionType in ("QuarantineFile", "BlockFile")
-| project 
-    FileSHA256, 
-    FileName, 
-    FileSize, 
-    ThreatName = MalwareDetectionName, 
-    DeviceId, 
-    Timestamp;
+// Step 1: Retrieve file events (quarantined/blocked files)
+let fileEvents = 
+    DeviceFileEvents
+    | where ActionType in ("QuarantineFile", "BlockFile")
+    | project 
+        SHA256 = SHA256,
+        FileName = FileName,
+        FileSize = FileSize,
+        ThreatName = ThreatName,
+        DeviceId = DeviceId,
+        Timestamp = Timestamp;
 
-let emailEvents = EmailEvents
-| where ActionType == "Quarantine" 
-| project 
-    FileSHA256, 
-    EmailSender, 
-    EmailRecipient, 
-    ThreatName = ThreatName, 
-    SourceURL = EmailUrl, 
-    ThreatStatusRank, 
-    Timestamp;
+// Step 2: Retrieve email events related to file events
+let emailEvents = 
+    EmailEvents
+    | where ActionType == "Quarantine"
+    | project 
+        EmailSender = SenderFromAddress,
+        EmailRecipient = RecipientEmailAddress,
+        SourceURL = EmailUrl,
+        SHA256 = NetworkMessageId, // Assuming this is the field relating to SHA256 in EmailEvents
+        ThreatStatusRank = ThreatStatusRank,
+        EmailTimestamp = Timestamp;
 
-let networkEvents = DeviceNetworkEvents
-| where ActionType == "Connection"
-| project 
-    FileSHA256, 
-    SourceIP, 
-    DestinationIP, 
-    DeviceId, 
-    Timestamp;
+// Step 3: Retrieve network events related to file events
+let networkEvents = 
+    DeviceNetworkEvents
+    | project 
+        SourceIP = SourceIPAddress,
+        DestinationIP = DestinationIPAddress,
+        DeviceId = DeviceId,
+        NetworkTimestamp = Timestamp;
 
-// Join file events with email events and network events to gather all relevant information
+// Step 4: Join file events with email events and network events to gather all relevant information
 fileEvents
-| join kind=leftouter (emailEvents) on FileSHA256
-| join kind=leftouter (networkEvents) on FileSHA256
+| join kind=leftouter emailEvents on SHA256
+| join kind=leftouter networkEvents on DeviceId
 | project
-    FileSHA256, 
+    SHA256, 
     FileName, 
     FileSize, 
     ThreatName, 
