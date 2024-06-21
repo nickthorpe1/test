@@ -1,0 +1,31 @@
+let EmailEventData = 
+    EmailEvents
+    | where Timestamp >= ago(7d)
+    | project Timestamp, SenderFromAddress, RecipientEmailAddress, Subject, DeliveryAction, DeliveryLocation
+    | summarize CountEmailEvents = count() by DeliveryAction, DeliveryLocation, bin(Timestamp, 1d)
+    | order by CountEmailEvents desc;
+
+let AlertEventData = 
+    AlertEvidence
+    | where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(ThreatFamily)
+    | project SHA256, FileName, IntroductionMethod, SenderFromAddress, RecipientEmailAddress, Timestamp, ThreatFamily, Severity
+    | summarize FileName = max(FileName), Timestamp = max(Timestamp), ThreatFamily = max(ThreatFamily), Severity = max(Severity), CountAlerts = count() by SHA256
+    | order by CountAlerts desc;
+
+EmailEventData
+| join kind=fullouter (AlertEventData) on SenderFromAddress, RecipientEmailAddress, Timestamp
+| project-rename 
+    EmailSenderFromAddress = SenderFromAddress, 
+    EmailRecipientEmailAddress = RecipientEmailAddress, 
+    EmailTimestamp = Timestamp, 
+    Subject, 
+    DeliveryAction, 
+    DeliveryLocation, 
+    SHA256, 
+    FileName, 
+    IntroductionMethod, 
+    ThreatFamily, 
+    Severity, 
+    CountEmailEvents, 
+    CountAlerts
+| order by CountEmailEvents desc, CountAlerts desc
