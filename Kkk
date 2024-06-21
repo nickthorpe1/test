@@ -5,31 +5,36 @@ let alertEvidence = AlertEvidence
 
 // Get email events
 let emailEvents = EmailEvents
-| where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(SenderFromAddress) and isnotempty(RecipientEmailAddress)
-| summarize make_list(SenderFromAddress), make_list(RecipientEmailAddress) by SHA256
-| project SHA256, SenderFromAddress = tostring(list_SenderFromAddress[0]), RecipientEmailAddress = tostring(list_RecipientEmailAddress[0]);
+| where Timestamp >= ago(7d) and isnotempty(SenderFromAddress) and isnotempty(RecipientEmailAddress)
+| project EmailEventTimestamp = Timestamp, SenderFromAddress, RecipientEmailAddress;
 
 // Get email attachments
 let emailAttachments = EmailAttachments
 | where Timestamp >= ago(7d) and isnotempty(SHA256)
-| summarize make_list(FileName) by SHA256
-| project SHA256, FileName = tostring(list_FileName[0]);
+| project SHA256, FileName, AttachmentTimestamp = Timestamp;
 
 // Get device events
 let deviceEvents = DeviceEvents
-| where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(AttackTechniques)
-| summarize make_list(AttackTechniques) by SHA256
-| project SHA256, AttackTechniques = tostring(list_AttackTechniques[0]);
+| where Timestamp >= ago(7d) and isnotempty(AttackTechniques)
+| project SHA256, AttackTechniques, DeviceEventTimestamp = Timestamp;
 
-// Join all data
-let combinedData = 
-alertEvidence
-| join kind=fullouter (emailEvents) on SHA256
-| join kind=fullouter (emailAttachments) on SHA256
-| join kind=fullouter (deviceEvents) on SHA256;
+// Join alertEvidence with emailEvents on Timestamp
+let alertWithEmail = alertEvidence
+| join kind=leftouter (emailEvents) on $left.Timestamp == $right.EmailEventTimestamp
+| project SHA256, FileName, IntroductionMethod, Timestamp, ThreatFamily, Severity, SenderFromAddress, RecipientEmailAddress, Count;
+
+// Join the result with emailAttachments on SHA256
+let alertWithEmailAndAttachments = alertWithEmail
+| join kind=leftouter (emailAttachments) on SHA256
+| project SHA256, FileName, IntroductionMethod, Timestamp, ThreatFamily, Severity, SenderFromAddress, RecipientEmailAddress, AttachmentTimestamp, Count;
+
+// Join the result with deviceEvents on SHA256
+let completeData = alertWithEmailAndAttachments
+| join kind=leftouter (deviceEvents) on SHA256
+| project SHA256, FileName, IntroductionMethod, SenderFromAddress, RecipientEmailAddress, Timestamp, ThreatFamily, AttackTechniques, Severity, Count;
 
 // Summarize and project final result
-combinedData
+completeData
 | summarize 
     FileName = max(FileName), 
     IntroductionMethod = max(IntroductionMethod), 
