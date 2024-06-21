@@ -1,0 +1,11 @@
+EmailEvents
+| where Timestamp >= ago(7d)
+| project
+    Timestamp,
+    SenderFromAddress,
+    RecipientEmailAddress,
+    Subject,
+    DeliveryAction,
+    DeliveryLocation
+| summarize Count = count() by DeliveryAction, DeliveryLocation, bin(Timestamp, 1d)
+| order by Count desc
