@@ -5,7 +5,7 @@ let alertEvidence = AlertEvidence
 
 // Get email events
 let emailEvents = EmailEvents
-| where Timestamp >= ago(7d) and isnotempty(SenderFromAddress) and isnotempty(RecipientEmailAddress)
+| where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(SenderFromAddress) and isnotempty(RecipientEmailAddress)
 | summarize make_list(SenderFromAddress), make_list(RecipientEmailAddress) by SHA256
 | project SHA256, SenderFromAddress = tostring(list_SenderFromAddress[0]), RecipientEmailAddress = tostring(list_RecipientEmailAddress[0]);
 
@@ -17,15 +17,19 @@ let emailAttachments = EmailAttachments
 
 // Get device events
 let deviceEvents = DeviceEvents
-| where Timestamp >= ago(7d) and isnotempty(AttackTechniques)
+| where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(AttackTechniques)
 | summarize make_list(AttackTechniques) by SHA256
 | project SHA256, AttackTechniques = tostring(list_AttackTechniques[0]);
 
 // Join all data
+let combinedData = 
 alertEvidence
 | join kind=fullouter (emailEvents) on SHA256
 | join kind=fullouter (emailAttachments) on SHA256
-| join kind=fullouter (deviceEvents) on SHA256
+| join kind=fullouter (deviceEvents) on SHA256;
+
+// Summarize and project final result
+combinedData
 | summarize 
     FileName = max(FileName), 
     IntroductionMethod = max(IntroductionMethod), 
