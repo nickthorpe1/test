@@ -1,20 +1,14 @@
-// Get alerts from AlertEvidence
-let alertEvidence = AlertEvidence
+AlertEvidence
 | where Timestamp >= ago(7d) and isnotempty(SHA256) and isnotempty(ThreatFamily)
-| project SHA256, FileName, IntroductionMethod, Timestamp, ThreatFamily, Severity, Count = 1;
-
-// Get email attachment info
-let emailAttachmentInfo = EmailAttachmentInfo
-| where Timestamp >= ago(7d) and isnotempty(SHA256)
-| project SHA256, SenderFromAddress, RecipientEmailAddress, AttachmentTimestamp = Timestamp;
-
-// Join alertEvidence with emailAttachmentInfo on SHA256
-let combinedData = alertEvidence
-| join kind=leftouter (emailAttachmentInfo) on SHA256
-| project SHA256, FileName, IntroductionMethod, SenderFromAddress, RecipientEmailAddress, Timestamp, ThreatFamily, Severity, Count;
-
-// Summarize and project final result
-combinedData
+| project 
+    SHA256, 
+    FileName, 
+    IntroductionMethod, 
+    SenderFromAddress, 
+    RecipientEmailAddress, 
+    Timestamp, 
+    ThreatFamily, 
+    Severity
 | summarize 
     FileName = max(FileName), 
     IntroductionMethod = max(IntroductionMethod), 
@@ -26,4 +20,13 @@ combinedData
     Count = count() 
 by SHA256
 | order by Count desc
-| project SHA256, FileName, IntroductionMethod, SenderFromAddress, RecipientEmailAddress, Timestamp, ThreatFamily, Severity, Count;
+| project 
+    SHA256, 
+    FileName, 
+    IntroductionMethod, 
+    SenderFromAddress, 
+    RecipientEmailAddress, 
+    Timestamp, 
+    ThreatFamily, 
+    Severity, 
+    Count;
