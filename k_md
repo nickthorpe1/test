@@ -1,0 +1,24 @@
+// Fetch data from Microsoft Defender for Endpoint
+let endpointThreats = DeviceEvents
+| where Timestamp >= ago(7d)
+| where ActionType == "ThreatDetected" 
+| extend ThreatFamily = tostring(parse_json(AdditionalFields).ThreatFamily)
+| project Timestamp, ThreatType, ThreatFamily;
+
+// Fetch data from Microsoft Defender for Office
+let officeThreats = EmailEvents
+| where Timestamp >= ago(7d)
+| where ActionType == "ThreatDetected"
+| extend ThreatFamily = tostring(parse_json(ThreatDetails).ThreatFamily)
+| project Timestamp, ThreatType, ThreatFamily;
+
+// Combine the two datasets
+let combinedThreats = union endpointThreats, officeThreats;
+
+// Group by threat family and count occurrences
+combinedThreats
+| summarize Count = count() by ThreatFamily
+| order by Count desc
+
+// Render as a bar chart
+| render barchart
