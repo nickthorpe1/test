@@ -1,0 +1,30 @@
+import urllib.request
+
+def test_proxy(proxy_url, target_url="http://google.co.uk"):
+    """
+    Tests proxy credentials by making a request to a target URL through the proxy.
+    
+    :param proxy_url: Proxy URL with credentials, e.g., 'http://username:password@proxyserver:port'
+    :param target_url: The URL to make the request to, default is http://httpbin.org/ip
+    :return: None
+    """
+    proxy_handler = urllib.request.ProxyHandler({
+        'http': proxy_url,
+        'https': proxy_url,
+    })
+    
+    opener = urllib.request.build_opener(proxy_handler)
+    urllib.request.install_opener(opener)
+    
+    try:
+        with urllib.request.urlopen(target_url) as response:
+            print("Proxy test successful.")
+            print("Response code:", response.getcode())
+            print("Response body:", response.read().decode('utf-8'))
+    except urllib.error.URLError as e:
+        print("Proxy test failed.")
+        print("Error:", e.reason)
+
+# Example usage
+proxy = "http://username:password@proxyserver:port"
+test_proxy(proxy)
