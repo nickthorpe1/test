@@ -1,0 +1,72 @@
+import requests
+import pandas as pd
+import csv
+
+# Your VirusTotal API Key
+API_KEY = 'abnabnabanbanb' \
+
+# Function to get download URL from VirusTotal for a given SHA256 hash
+def get_download_url(sha256_hash):
+    url = f"https://www.virustotal.com/api/v3/files/{sha256_hash}/download_url"
+    headers = {
+        'x-apikey': API_KEY
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('data')
+    else:
+        print(f"Failed to get download URL for {sha256_hash}: {response.status_code}")
+        return None
+
+# Function to process hashes from a list
+def process_hash_list(hash_list):
+    results = {}
+    for sha256_hash in hash_list:
+        download_url = get_download_url(sha256_hash)
+        results[sha256_hash] = download_url
+    return results
+
+# Function to read hashes from a CSV file
+def read_hashes_from_csv(file_path):
+    df = pd.read_csv(file_path)
+    # Assuming the hashes are in a column named 'hash'
+    return df['hash'].tolist()
+
+# Function to write results to a CSV file
+def write_results_to_csv(results, output_file):
+    with open(output_file, 'w', newline='') as csvfile:
+        fieldnames = ['sha256_hash', 'download_url']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for sha256_hash, download_url in results.items():
+            writer.writerow({'sha256_hash': sha256_hash, 'download_url': download_url})
+
+# Main function
+def main():
+    # Option 1: Manual list of SHA256 hashes
+    hash_list = [
+        "f59035192098e44b86c4648a0de4078edbe80352260276f4755d15d354f5fc58",
+        "cb97ec024c04150ad419d1af2d1eb66b5c48ab5f345409d9d791db574981a3fb",
+        "39d7407e76080ec5d838c8ebca5182f3ac4a5f416ff7bda9cbc4efffd78b4ff5",
+        "70c5b64589277ace59db86d19d846a9236214b48aacabbaf880f2b6355ab5260",
+        "cafaa7bc3277711509dc0800ed53b82f645e86c195e85fbf34430bbc75c39c24",
+        "9863173e0a45318f776e36b1a8529380362af8f3e73a2b4875e30d31ad7bd3c1",
+        "ecce739b556f26de07adbfc660a958ba2dca432f70a8c4dd01466141a6551146",
+        "09d152aa2b6261e3b0a1d1c19fa8032f215932186829cfcca954cc5e84a6cc38",
+        "f66122a3e1eaa7dcb7c13838037573dace4e5a1c474a23006417274c0c8608be",
+        "56554117d96d12bd3504ebef2a8f28e790dd1fe583c33ad58ccbf614313ead8c",
+
+        # Add more hashes here
+    ]
+
+    # Option 2: Read SHA256 hashes from a CSV file
+    # hash_list = read_hashes_from_csv('hashes.csv')
+
+    # Get download URLs for the hashes
+    results = process_hash_list(hash_list)
+
+    # Output results to a CSV file
+    write_results_to_csv(results, 'results.csv')
+
+if __name__ == "__main__":
+    main()
