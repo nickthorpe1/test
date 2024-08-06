@@ -1,0 +1,40 @@
+import requests
+import csv
+
+# Function to query the IOC against the vendor's API
+def query_ioc(ioc):
+    try:
+        response = requests.get(f"https://intel.vendor/api/{ioc}")
+        response.raise_for_status()  # Will raise an HTTPError if the status is 4xx or 5xx
+        return response.json()  # Assuming the API returns JSON data
+    except requests.exceptions.HTTPError as http_err:
+        if response.status_code == 404:
+            # If the status code is 404, the IOC is not found
+            return None  # You could return any placeholder here, e.g., "IOC not found"
+        else:
+            raise http_err  # Re-raise other HTTP errors
+    except Exception as err:
+        # Handle other possible exceptions
+        print(f"An error occurred: {err}")
+        return None
+
+# Load IOCs from a text file
+with open('iocs.txt', 'r') as file:
+    iocs = [line.strip() for line in file]
+
+# Prepare the output CSV
+with open('enriched_iocs.csv', 'w', newline='') as csvfile:
+    csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(['IOC', 'Intel Data'])  # Header row
+
+    # Loop through each IOC and query the vendor
+    for ioc in iocs:
+        intel_data = query_ioc(ioc)
+        if intel_data:
+            # If data is found, write the IOC and the data to the CSV
+            csv_writer.writerow([ioc, intel_data])
+        else:
+            # If the IOC is not found, log it with an appropriate message
+            csv_writer.writerow([ioc, 'IOC not found'])
+
+print("IOC enrichment completed.")
