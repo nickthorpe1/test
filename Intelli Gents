@@ -1,0 +1,163 @@
+1. Vulnerability Intelligence
+Focus: Tracking and analyzing vulnerabilities (CVEs), zero-days, and newly discovered exploits.
+Responsibilities:
+Monitor vulnerability databases (NVD, CVE).
+Collaborate with patch management teams to prioritize critical vulnerabilities.
+Provide timely insights on exploitability of vulnerabilities in organizational assets.
+Example: Alerting about a new zero-day vulnerability in a widely used software like Windows or Apache, and advising mitigation steps.
+
+2. Threat Profiling (Actor and Campaign Intelligence)
+Focus: Prioritizing and profiling threat actors (e.g., nation-states, cybercrime groups) and their campaigns.
+Responsibilities:
+Identify key threat actors targeting the organization or industry.
+Track their tactics, techniques, and procedures (TTPs) based on frameworks like MITRE ATT&CK.
+Monitor ongoing campaigns and attribute incidents to specific threat groups.
+Example: Identifying a ransomware group specifically targeting healthcare organizations and recommending protective measures.
+
+3. Infrastructure and Attack Surface Intelligence
+Focus: Monitoring threats targeting specific technologies, infrastructures, and platforms used by the organization.
+Responsibilities:
+Focus on attack vectors relevant to the organization’s tech stack (e.g., cloud, IoT, OT, network infrastructure).
+Evaluate risks related to cloud configurations, OT systems, network infrastructure, and third-party services.
+Collaborate with IT and operations to ensure critical infrastructure is hardened.
+Example: Providing intelligence on a surge of attacks exploiting AWS misconfigurations or IoT vulnerabilities in smart devices.
+
+4. Malware and Indicator of Compromise (IoC) Intelligence
+Focus: Tracking and analyzing malware trends, tools, and specific indicators of compromise (IoCs).
+Responsibilities:
+Analyze malware signatures, tactics, and proliferation.
+Monitor threat feeds for new IoCs (IP addresses, domains, file hashes, etc.) and communicate findings to detection and response teams.
+Identify patterns in malware distribution across different platforms and technologies.
+Example: Notifying SOC teams about a new strain of ransomware targeting organizations within a specific vertical, and sharing IoCs for detection.
+
+5. Geopolitical and Sector-Specific Intelligence
+Focus: Monitoring and analyzing geopolitical factors, regulatory changes, and industry-specific threats.
+Responsibilities:
+Stay updated on geopolitical events that could influence cyber risks (e.g., sanctions, regional conflicts).
+Monitor sector-specific cyber threats based on the organization’s industry (e.g., finance, healthcare, energy).
+Provide tailored intelligence and reporting relevant to business operations and compliance requirements.
+Example: Tracking the impact of international tensions on supply chain security for tech companies, or focusing on new cyber regulations in a given country.
+
+
+Summary of Coverage Domains:
+Vulnerability Intelligence: Focus on vulnerabilities, patches, and exploitability.
+Threat Profiling (Actor and Campaign Intelligence): Prioritize and monitor key threat actors and their tactics.
+Infrastructure and Attack Surface Intelligence: Protect organizational assets, technology stack, and configurations.
+Malware and IoC Intelligence: Track and analyze malware campaigns and indicators of compromise.
+Geopolitical and Sector-Specific Intelligence: Align with global events and industry-specific risks.
+
+Each domain allows analysts to focus on a specific aspect of threat intelligence while ensuring that, together, they provide full spectrum coverage of potential threats to the organization.
+
+
+
+
+Revised Coverage Domains for Threat Intelligence Analysts
+
+1. Vulnerability Intelligence
+Focus: Tracking and analyzing vulnerabilities (CVEs), zero-days, and newly discovered exploits.
+Responsibilities:
+Monitor vulnerability databases and advisories.
+Collaborate with patch management teams to prioritize critical vulnerabilities.
+Provide timely insights on exploitability of vulnerabilities in organizational assets.
+Example: Alerting on new vulnerabilities in mission-critical software (e.g., an urgent Apache Struts CVE).
+
+2. Threat Profiling (Actor, Campaign, and Malware Intelligence)
+Focus: Prioritizing and profiling threat actors (e.g., nation-states, cybercriminals) along with their TTPs, tools, and campaigns, including malware.
+Responsibilities:
+Build profiles for key actors, outlining motivations, capabilities, and preferred attack methods.
+Track actor-linked campaigns, tools, and techniques, including malware families, exploits, and tactics.
+Use frameworks like MITRE ATT&CK to map out actor behavior.
+Example: Profiling a cybercrime group that specializes in ransomware attacks, tracking the specific ransomware they use, and alerting the organization to new campaigns.
+
+3. Infrastructure and Attack Surface Intelligence
+Focus: Monitoring threats targeting specific technologies, infrastructures, and platforms used by the organization.
+Responsibilities:
+Focus on attack vectors relevant to the organization’s tech stack (e.g., cloud, IoT, OT, network infrastructure).
+Evaluate risks related to cloud configurations, OT systems, network infrastructure, and third-party services.
+Collaborate with IT and operations to ensure critical infrastructure is hardened.
+Example: Monitoring threats to cloud platforms (e.g., misconfigurations in AWS or Azure) and providing early warnings for emerging attack vectors.
+
+4. Geopolitical and Sector-Specific Intelligence
+Focus: Monitoring and analyzing geopolitical factors, regulatory changes, and industry-specific threats.
+Responsibilities:
+Track geopolitical events that may increase cyber risks (e.g., sanctions, regional conflicts).
+Monitor cyber threats that are unique to specific industries or sectors (e.g., energy, finance, healthcare).
+Provide customized intelligence reporting based on the organization's operations and compliance needs.
+Example: Advising on risks arising from geopolitical tensions that could trigger cyber espionage campaigns against the financial sector.
+This adjustment not only simplifies the model but also emphasizes the importance of understanding threat actors holistically, including the malware and tools they use.
+
+
+5. Major Threat Families and Attack Vectors (e.g., Ransomware, Phishing, DDoS)
+Focus: Dedicated monitoring and analysis of significant threat types that are high-impact and/or recurring, such as ransomware, phishing campaigns, Distributed Denial-of-Service (DDoS) attacks, etc.
+Responsibilities:
+Track and analyze high-profile threat families (e.g., ransomware strains, phishing toolkits) that are commonly used by various actors.
+Maintain a focused understanding of how these threats evolve, the tactics used, and the financial, operational, and reputational impacts they cause.
+Work closely with Threat Profiling to correlate the use of these attack types with specific actors, but maintain a specialized view of the threats due to their significance.
+Example: A ransomware specialist monitors different strains like LockBit, BlackCat, or Conti, identifying new ransom demands, evolving encryption methods, and recovery challenges. They report both tactical IoCs and strategic shifts, collaborating with Threat Profiling analysts to map actors using these tools.
+Why this works:
+Ransomware as a Primary Example: Ransomware fits perfectly here, as it has become a major operational threat across industries. By giving ransomware a dedicated focus within this domain, you can track not only its evolving nature but also the broader impact on business operations.
+
+Other Major Threats: While ransomware may get most attention, other key threats like phishing (still the most common attack vector) and DDoS attacks deserve regular scrutiny. This ensures that intelligence is holistic and can anticipate different kinds of disruptions.
+
+Dotted-Line Connection:
+This domain could have a dotted-line connection back to the "Threat Profiling" domain since most of these attack vectors are tools employed by threat actors. However, their sheer prevalence and specialized impact necessitate dedicated focus.
+Updated Five-Domain Structure:
+Vulnerability Intelligence
+Threat Profiling (Actors, Campaigns, and Malware Intelligence)
+Infrastructure and Attack Surface Intelligence
+Geopolitical and Sector-Specific Intelligence
+Major Threat Families and Attack Vectors (e.g., Ransomware, Phishing, DDoS)
+This 5th domain captures ransomware while also covering other high-impact attack types, creating space for more specialization without redundancy. How does this structure align with your thinking?
+
+
+Domain	Description	Examples of Intelligence	Stakeholders	Type of Intelligence
+
+1. Vulnerability Intelligence	Focuses on identifying, assessing, and prioritizing vulnerabilities across systems and software, ensuring timely patching and mitigation.	- Newly discovered CVEs
+- Zero-day vulnerability details
+- Patch release timelines
+- Vulnerability exploitability assessments	- IT Security
+- Patch Management
+- SOC (Security Operations Center)	Tactical, Operational
+
+2. Threat Profiling (Actors, Campaigns, and Malware)	Profiles threat actors, their motivations, tactics, techniques, procedures (TTPs), and tools, including malware and exploits. Focuses on understanding the actors and how they target the organization.	- Actor profiles (APT groups, cybercriminals)
+- Campaign tracking (ransomware, espionage)
+- Malware families linked to threat actors
+- TTP mappings (e.g., MITRE ATT&CK)	- Threat Intelligence Analysts
+- Incident Response Teams
+- Executive Leadership (Strategic Overviews)	Operational, Strategic
+
+3. Infrastructure and Attack Surface Intelligence	Monitors threats targeting specific technologies, infrastructures, and configurations within the organization, aiming to reduce exposure to attack vectors.	- Threats to cloud environments (e.g., AWS, Azure)
+- IoT/OT vulnerabilities
+- Network infrastructure exploits
+- Misconfigurations in core systems	- Cloud Security Teams
+- Network Engineers
+- IT/OT Operations
+- SOC	Tactical, Operational
+
+4. Geopolitical and Sector-Specific Intelligence	Tracks global and industry-specific risks, including geopolitical events and regulations, helping the organization anticipate and mitigate sector-specific threats.	- Nation-state cyber threats
+- Regional conflict impact on supply chains
+- Industry regulations (e.g., GDPR, CCPA)
+- Sector-specific threat trends (e.g., healthcare, finance)	- Executive Leadership
+- Legal & Compliance
+- Risk Management
+- Public Relations	Strategic
+
+5. Major Threat Families and Attack Vectors (e.g., Ransomware, Phishing, DDoS)	Focuses on analyzing high-impact attack types like ransomware, phishing, and DDoS, which are often used by various threat actors and can disrupt operations.	- Ransomware group activity (e.g., new strains)
+- Phishing campaign trends
+- DDoS attack patterns
+- Industry-wide attack impacts	- Incident Response Teams
+- Business Continuity Teams
+- SOC
+- Executive Leadership (Strategic impacts)	Tactical, Operational, Strategic
+
+Additional Considerations:
+Type of Intelligence:
+
+Tactical: Immediate, actionable intelligence, such as IoCs (Indicators of Compromise) or new CVEs.
+Operational: Broader trends and actor campaigns that affect mid-term operations.
+Strategic: Long-term, high-level intelligence, often useful for executive decision-making and organizational strategy.
+Stakeholders:
+
+Tactical stakeholders (SOC, incident response, security teams) benefit from day-to-day operational data to react swiftly to threats.
+Operational stakeholders (risk management, IT/OT teams) need intelligence that informs their ongoing efforts to secure infrastructures and align with business processes.
+Strategic stakeholders (executive leadership, compliance, and legal teams) require high-level analysis that connects threat intelligence to the larger business context, aiding in risk mitigation and strategic planning.
